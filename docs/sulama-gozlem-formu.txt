@@ -1,0 +1,12 @@
+SULAMA GÖZLEM VE UYGULAMA FORMU
+Eğitim kodu: ______
+Katılımcı: ______
+İlçe / mahalle: ______
+Ürün / üretim dönemi: ______
+Gözlem tarihi ve saati: ______
+Toprak ve bitki gözlemi: ______
+Sistemde fark edilen bakım ihtiyacı: ______
+Yapılan uygulama ve kayıt: ______
+Eğitici gözlemi: ______
+Takip tarihi: ______
+Bu form eğitim amaçlı örnektir. Sulama ve gübreleme kararı alanın verilerine göre yetkili uzmanla değerlendirilir.

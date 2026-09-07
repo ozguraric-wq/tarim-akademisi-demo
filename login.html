@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="tr" class="auth-pending">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="theme-color" content="#0c0b0a">
+    <title>Ratel Dijital · Tarım Akademisi</title>
+    <link rel="icon" href="assets/ratel-logo.svg" type="image/svg+xml">
+    <style>
+      :root {
+        color-scheme: dark;
+        --ink: #0c0b0a;
+        --paper: #e8e1d4;
+        --muted: #b2aba0;
+        --accent: #e4544e;
+      }
+
+      * { box-sizing: border-box; }
+      html, body { min-height: 100%; }
+      html.auth-pending body { visibility: hidden; }
+      body {
+        margin: 0;
+        background: var(--ink);
+        color: var(--paper);
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        pointer-events: none;
+        opacity: .2;
+        background-image:
+          linear-gradient(rgba(255,255,255,.05) 1px, transparent 1px),
+          linear-gradient(90deg, rgba(255,255,255,.05) 1px, transparent 1px);
+        background-size: 44px 44px;
+        mask-image: linear-gradient(to bottom, black, transparent 80%);
+      }
+      .shell {
+        position: relative;
+        min-height: 100vh;
+        display: grid;
+        grid-template-columns: minmax(0, 1.05fr) minmax(430px, .95fr);
+      }
+      .brand {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding: clamp(32px, 5vw, 78px);
+        border-right: 1px solid rgba(232,225,212,.14);
+      }
+      .ratel-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 16px;
+        width: max-content;
+        color: var(--paper);
+        text-decoration: none;
+      }
+      .ratel-link svg { width: 48px; height: 54px; color: var(--accent); }
+      .ratel-wordmark { font-size: 1rem; font-weight: 850; letter-spacing: .22em; }
+      .intro { max-width: 760px; padding: 60px 0; }
+      .kicker {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        margin: 0 0 24px;
+        color: var(--accent);
+        font-size: .72rem;
+        font-weight: 800;
+        letter-spacing: .2em;
+        text-transform: uppercase;
+      }
+      .kicker::before { content: ""; width: 44px; height: 2px; background: currentColor; }
+      h1 {
+        margin: 0;
+        max-width: 720px;
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: clamp(3.2rem, 6.6vw, 7.8rem);
+        font-weight: 400;
+        line-height: 1.04;
+        letter-spacing: -.055em;
+      }
+      .intro p:not(.kicker) {
+        max-width: 640px;
+        margin: 30px 0 0;
+        color: var(--muted);
+        font-size: clamp(1rem, 1.3vw, 1.25rem);
+        line-height: 1.75;
+      }
+      .site-link { color: var(--paper); text-underline-offset: 5px; }
+      .meta {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 18px 32px;
+        color: var(--muted);
+        font-size: .72rem;
+        letter-spacing: .12em;
+        text-transform: uppercase;
+      }
+      .panel-wrap { display: grid; place-items: center; min-height: 100vh; padding: 32px; }
+      .panel {
+        width: min(100%, 510px);
+        padding: clamp(28px, 4vw, 54px);
+        border: 1px solid rgba(232,225,212,.16);
+        border-radius: 28px;
+        background: rgba(22,20,18,.86);
+        box-shadow: 0 32px 90px rgba(0,0,0,.35);
+        backdrop-filter: blur(16px);
+      }
+      .panel-number { color: var(--accent); font: 400 3.2rem/1 Georgia, serif; }
+      .panel h2 { margin: 28px 0 10px; font: 400 clamp(2rem,3vw,2.9rem)/1.05 Georgia, serif; }
+      .panel-copy { margin: 0 0 34px; color: var(--muted); font-size: .9rem; line-height: 1.65; }
+      label {
+        display: block;
+        margin: 18px 0 8px;
+        color: #bdb6aa;
+        font-size: .72rem;
+        font-weight: 800;
+        letter-spacing: .12em;
+        text-transform: uppercase;
+      }
+      input {
+        width: 100%;
+        height: 56px;
+        padding: 0 16px;
+        border: 1px solid rgba(232,225,212,.2);
+        border-radius: 13px;
+        outline: none;
+        background: #0f0e0d;
+        color: var(--paper);
+        font: inherit;
+        transition: border-color .2s, box-shadow .2s;
+      }
+      input:focus { border-color: var(--accent); box-shadow: 0 0 0 4px rgba(228,84,78,.12); }
+      button {
+        width: 100%;
+        min-height: 58px;
+        margin-top: 26px;
+        border: 0;
+        border-radius: 13px;
+        background: var(--accent);
+        color: #130b09;
+        cursor: pointer;
+        font: 800 .86rem/1 inherit;
+        letter-spacing: .06em;
+        transition: transform .2s, filter .2s;
+      }
+      button:hover { filter: brightness(1.08); transform: translateY(-1px); }
+      button:disabled { cursor: wait; opacity: .75; transform: none; }
+      .message { min-height: 22px; margin: 13px 0 0; color: #ff8d88; font-size: .8rem; }
+      .privacy { margin: 18px 0 0; color: #a39c91; font-size: .72rem; line-height: 1.6; }
+
+      @media (max-width: 900px) {
+        .shell { grid-template-columns: 1fr; }
+        .brand { min-height: auto; padding: 30px 24px 42px; border-right: 0; border-bottom: 1px solid rgba(232,225,212,.14); }
+        .intro { padding: 80px 0 45px; }
+        .panel-wrap { min-height: auto; padding: 34px 20px 58px; }
+        .meta { display: none; }
+      }
+      @media (max-width: 520px) {
+        h1 { font-size: clamp(3rem, 16vw, 5rem); }
+        .panel { padding: 28px 22px; border-radius: 22px; }
+        .ratel-link svg { width: 40px; }
+      }
+    </style>
+    <script src="auth.js"></script>
+  </head>
+  <body>
+    <main class="shell">
+      <section class="brand" aria-labelledby="welcome-title">
+        <a class="ratel-link" href="https://rateldijital.com" target="_blank" rel="noreferrer" aria-label="Ratel Dijital web sitesini aç">
+          <svg viewBox="0 0 116 132" fill="none" aria-hidden="true"><path d="M22 7 H86 A16 16 0 0 1 102 23 V72 L110 124 L72 87 H22 A16 16 0 0 1 6 71 V23 A16 16 0 0 1 22 7 Z" stroke="currentColor" stroke-width="12" stroke-linejoin="round" /></svg>
+          <span class="ratel-wordmark">RATEL DİJİTAL</span>
+        </a>
+
+        <div class="intro">
+          <p class="kicker">Özel proje sunumu</p>
+          <h1 id="welcome-title">Fikri, çalışan bir dijital deneyime dönüştürüyoruz.</h1>
+          <p>Eskişehir Tarım Akademisi için hazırlanan kurumsal web sitesi sunumuna hoş geldiniz. Ratel Dijital; tasarım, yazılım ve yapay zekâ yetkinliklerini tek üretim gücünde buluşturur.</p>
+        </div>
+
+        <div class="meta">
+          <span>Ratel Dijital © 2026</span>
+          <a class="site-link" href="https://rateldijital.com" target="_blank" rel="noreferrer">rateldijital.com ↗</a>
+        </div>
+      </section>
+
+      <section class="panel-wrap" aria-label="Giriş alanı">
+        <div class="panel">
+          <div class="panel-number">01</div>
+          <h2>Sunuma giriş</h2>
+          <p class="panel-copy">Eskişehir Tarım Akademisi proje demosunu incelemek için size iletilen giriş bilgilerini kullanın.</p>
+          <form id="login-form" autocomplete="on">
+            <label for="login-user">Kullanıcı adı</label>
+            <input id="login-user" name="username" type="text" autocomplete="username" required >
+            <label for="login-password">Şifre</label>
+            <input id="login-password" name="password" type="password" autocomplete="current-password" required>
+            <button type="submit">Sunuma Giriş</button>
+            <p class="message" id="login-error" role="alert" aria-live="polite"></p>
+          </form>
+          <p class="privacy">Ratel Dijital tarafından hazırlanan proje sunumu için demo girişidir.</p>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
+
