@@ -41,9 +41,6 @@
     window.addEventListener('pageshow', () => { if (!validSession()) leave(); });
     window.addEventListener('academy-demo-logout', leave);
     document.addEventListener('visibilitychange', () => { if (!document.hidden && !validSession()) leave(); });
-    const control = document.createElement('button');
-    control.type = 'button'; control.textContent = 'Demodan çık'; control.className = 'ratel-demo-exit';
-    control.setAttribute('aria-label', 'Demo oturumunu kapat'); control.addEventListener('click', leave);
-    document.addEventListener('DOMContentLoaded', () => document.body.appendChild(control));
+
   }
 })();
